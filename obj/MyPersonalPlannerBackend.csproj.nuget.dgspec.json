@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\MyPersonalPlannerBackend\\MyPersonalPlannerBackend.csproj": {}
+    "C:\\Users\\Stefan de Keijzer\\Projecten\\mypersonalplannerbackend\\MyPersonalPlannerBackend.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\MyPersonalPlannerBackend\\MyPersonalPlannerBackend.csproj": {
+    "C:\\Users\\Stefan de Keijzer\\Projecten\\mypersonalplannerbackend\\MyPersonalPlannerBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\MyPersonalPlannerBackend\\MyPersonalPlannerBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Stefan de Keijzer\\Projecten\\mypersonalplannerbackend\\MyPersonalPlannerBackend.csproj",
         "projectName": "MyPersonalPlannerBackend",
-        "projectPath": "D:\\Projects\\MyPersonalPlannerBackend\\MyPersonalPlannerBackend.csproj",
-        "packagesPath": "C:\\Users\\nomis\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\MyPersonalPlannerBackend\\obj\\",
+        "projectPath": "C:\\Users\\Stefan de Keijzer\\Projecten\\mypersonalplannerbackend\\MyPersonalPlannerBackend.csproj",
+        "packagesPath": "C:\\Users\\Stefan de Keijzer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Stefan de Keijzer\\Projecten\\mypersonalplannerbackend\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nomis\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Stefan de Keijzer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
