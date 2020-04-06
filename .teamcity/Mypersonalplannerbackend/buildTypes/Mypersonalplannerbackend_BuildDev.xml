@@ -3,6 +3,9 @@
   <name>Build - Dev</name>
   <description />
   <settings>
+    <options>
+      <option name="branchFilter" value="+:dev" />
+    </options>
     <parameters />
     <build-runners>
       <runner id="RUNNER_11" name="" type="dotnet.cli">
