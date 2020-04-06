@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcs-root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="5ad50c25-d43e-4c46-8207-eb0dd41b3d17" type="jetbrains.git" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
+  <name>http://145.97.16.182/mypersonalplanner/mypersonalplannerbackend.git#refs/heads/master (1)</name>
+  <param name="agentCleanFilesPolicy" value="ALL_UNTRACKED" />
+  <param name="agentCleanPolicy" value="ON_BRANCH_CHANGE" />
+  <param name="authMethod" value="PASSWORD" />
+  <param name="branch" value="refs/heads/master" />
+  <param name="ignoreKnownHosts" value="true" />
+  <param name="secure:password" value="credentialsJSON:1297eee7-7607-4aa2-9084-efa81e288424" />
+  <param name="submoduleCheckout" value="CHECKOUT" />
+  <param name="url" value="http://145.97.16.182/mypersonalplanner/mypersonalplannerbackend.git" />
+  <param name="useAlternates" value="true" />
+  <param name="username" value="Stefan" />
+  <param name="usernameStyle" value="USERID" />
+</vcs-root>
+
