@@ -3,6 +3,15 @@
   <name>Mypersonalplannerbackend</name>
   <parameters />
   <project-extensions>
+    <extension id="PROJECT_EXT_2" type="OAuthProvider">
+      <parameters>
+        <param name="clientId" value="c8d4da5794c84e68244d79bee2b045faca7b1aa719ad1b01b65d7990dfffca74" />
+        <param name="displayName" value="GitLab CE/EE" />
+        <param name="gitLabUrl" value="145.97.16.182" />
+        <param name="providerType" value="GitLabCEorEE" />
+        <param name="secure:clientSecret" value="credentialsJSON:2b60b624-7134-4f3c-8977-1f9b936bf28e" />
+      </parameters>
+    </extension>
     <extension id="PROJECT_EXT_3" type="versionedSettings">
       <parameters>
         <param name="buildSettings" value="PREFER_VCS" />
