@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="9936294c-79eb-43d5-9d6f-da733d08046f" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2018.1/project-config.xsd">
-  <name>Backend</name>
+  <name>Backend - Auto Test</name>
   <description />
   <settings>
     <options>
