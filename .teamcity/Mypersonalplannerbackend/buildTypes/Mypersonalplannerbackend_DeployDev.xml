@@ -3,6 +3,11 @@
   <name>Deploy - Dev</name>
   <description />
   <settings>
+    <options>
+      <option name="allowPersonalBuildTriggering" value="false" />
+      <option name="buildConfigurationType" value="DEPLOYMENT" />
+      <option name="maximumNumberOfBuilds" value="1" />
+    </options>
     <parameters />
     <build-runners>
       <runner id="RUNNER_13" name="SSH to server and run deploy script" type="simpleRunner">
