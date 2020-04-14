@@ -46,7 +46,11 @@ namespace MyPersonalPlannerBackend
             {
                 endpoints.MapGet("/", async context =>
                 {
+<<<<<<< HEAD
                     await context.Response.WriteAsync("Hello World! lmaoooo");
+=======
+                    await context.Response.WriteAsync("Hello World!!!");
+>>>>>>> 0e4451f31c5450cf8aae6d11fae7040b83075e16
                 });
             });
         }
