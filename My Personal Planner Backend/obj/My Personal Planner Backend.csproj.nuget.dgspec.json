@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\My Personal Planner Backend.csproj": {}
+    "C:\\Users\\Fleur van Eijk\\VisualStudioProjects\\MyPersonalPlannerBackend\\My Personal Planner Backend\\My Personal Planner Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\My Personal Planner Backend.csproj": {
+    "C:\\Users\\Fleur van Eijk\\VisualStudioProjects\\MyPersonalPlannerBackend\\My Personal Planner Backend\\My Personal Planner Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\My Personal Planner Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Fleur van Eijk\\VisualStudioProjects\\MyPersonalPlannerBackend\\My Personal Planner Backend\\My Personal Planner Backend.csproj",
         "projectName": "My Personal Planner Backend",
-        "projectPath": "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\My Personal Planner Backend.csproj",
-        "packagesPath": "C:\\Users\\Stefan de Keijzer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\obj\\",
+        "projectPath": "C:\\Users\\Fleur van Eijk\\VisualStudioProjects\\MyPersonalPlannerBackend\\My Personal Planner Backend\\My Personal Planner Backend.csproj",
+        "packagesPath": "C:\\Users\\Fleur van Eijk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fleur van Eijk\\VisualStudioProjects\\MyPersonalPlannerBackend\\My Personal Planner Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Stefan de Keijzer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Fleur van Eijk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
