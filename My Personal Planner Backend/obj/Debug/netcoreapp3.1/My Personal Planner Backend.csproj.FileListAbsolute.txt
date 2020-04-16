@@ -1,0 +1,9 @@
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\My Personal Planner Backend.csprojAssemblyReference.cache
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\My Personal Planner Backend.AssemblyInfoInputs.cache
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\My Personal Planner Backend.AssemblyInfo.cs
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\My Personal Planner Backend.RazorTargetAssemblyInfo.cache
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\staticwebassets\My Personal Planner Backend.StaticWebAssets.Manifest.cache
+C:\Users\Stefan de Keijzer\source\repos\My Personal Planner Backend\My Personal Planner Backend\obj\Debug\netcoreapp3.1\staticwebassets\My Personal Planner Backend.StaticWebAssets.xml

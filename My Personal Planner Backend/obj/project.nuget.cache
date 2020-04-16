@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8TMubT3pFf2E4t0pSSDzHGWn6gjXvA59acS5ojmzmP1tOCbolVcvzq7Og0NKFUkR8ydEpfSD8IvhQjPVkRGZWA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Stefan de Keijzer\\source\\repos\\My Personal Planner Backend\\My Personal Planner Backend\\My Personal Planner Backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Stefan de Keijzer\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.8\\microsoft.visualstudio.azure.containers.tools.targets.1.10.8.nupkg.sha512"
+  ],
+  "logs": []
+}
