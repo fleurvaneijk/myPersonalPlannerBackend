@@ -30,3 +30,5 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+My Personal Planner/bin
+My Personal Planner/obj
