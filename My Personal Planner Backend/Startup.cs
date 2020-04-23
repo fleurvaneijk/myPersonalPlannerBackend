@@ -38,7 +38,7 @@ namespace My_Personal_Planner_Backend
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync("Hello World!!");
                 });
                 endpoints.MapControllers();
             });
