@@ -1,6 +1,6 @@
 using System;
 
-namespace My_Personal_Planner_Backend
+namespace MyPersonalPlannerBackend
 {
     public class WeatherForecast
     {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "My Personal Planner Backend", "My Personal Planner Backend\My Personal Planner Backend.csproj", "{5983DBCA-2617-44C1-8D55-2A789EF15BE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyPersonalPlannerBackend", "MyPersonalPlannerBackend.csproj", "{5669FAA8-FB6F-4176-BF48-8135715A507E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5983DBCA-2617-44C1-8D55-2A789EF15BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5983DBCA-2617-44C1-8D55-2A789EF15BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5983DBCA-2617-44C1-8D55-2A789EF15BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5983DBCA-2617-44C1-8D55-2A789EF15BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5669FAA8-FB6F-4176-BF48-8135715A507E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5669FAA8-FB6F-4176-BF48-8135715A507E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5669FAA8-FB6F-4176-BF48-8135715A507E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5669FAA8-FB6F-4176-BF48-8135715A507E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {64CC88B4-5781-460F-A13C-E5FBDF774903}
+		SolutionGuid = {E9881F99-5450-4EDC-B908-F67AA45F0AD4}
 	EndGlobalSection
 EndGlobal
