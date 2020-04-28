@@ -6,6 +6,7 @@
     <UserSecretsId>4b657421-b5d0-4541-b5fb-40fddf46b103</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <StartupObject>My_Personal_Planner_Backend.Program</StartupObject>
+	<SonarQubeTestProject>false</SonarQubeTestProject>
   </PropertyGroup>
 
   <ItemGroup>
