@@ -1,17 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>My_Personal_Planner_Backend</RootNamespace>
-    <UserSecretsId>4b657421-b5d0-4541-b5fb-40fddf46b103</UserSecretsId>
+    <UserSecretsId>a34a29ae-605f-47de-9950-06f7b614e3bc</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <StartupObject>My_Personal_Planner_Backend.Program</StartupObject>
-	<SonarQubeTestProject>false</SonarQubeTestProject>
+    <DockerfileContext>.</DockerfileContext>
+    <StartupObject>MyPersonalPlannerBackend.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeCoverage" Version="16.5.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Microsoft.CodeCoverage" Version="16.6.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">

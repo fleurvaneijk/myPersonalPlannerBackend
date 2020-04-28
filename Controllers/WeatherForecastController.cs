@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace My_Personal_Planner_Backend.Controllers
+namespace MyPersonalPlannerBackend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
