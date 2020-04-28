@@ -1,16 +1,11 @@
-IntelliJ IDEA   
 *.swp
 *.*~
 project.lock.json
 .DS_Store
 *.pyc
-nupkg/
 
 # Visual Studio Code
 .vscode
-
-# Rider
-.idea
 
 # User-specific files
 *.suo
@@ -29,11 +24,11 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-[Oo]ut/
 msbuild.log
 msbuild.err
 msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-*.cache
+My Personal Planner/bin
+My Personal Planner/obj
