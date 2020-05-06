@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace My_Personal_Planner_Backend.NUnitTests
+namespace MyPersonalPlannerBackend.BusinessLogicTest
 {
     public class Tests
     {
