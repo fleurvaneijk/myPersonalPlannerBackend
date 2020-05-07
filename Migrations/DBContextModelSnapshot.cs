@@ -6,7 +6,7 @@ using MyPersonalPlannerBackend.Model;
 
 namespace MyPersonalPlannerBackend.Migrations
 {
-    [DbContext(typeof(DBContext))]
+    [DbContext(typeof(MariaDBContext))]
     partial class DBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

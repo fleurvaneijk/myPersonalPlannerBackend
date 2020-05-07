@@ -1,12 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyPersonalPlannerBackend.Model
 {
-    public class DBContext : DbContext
+    public class MariaDBContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseMySql("Server=localhost; Database=mypersonalplanner;User=root;Password=password");
+        public MariaDBContext(DbContextOptions<MariaDBContext> options) : base(options)
+        {
+
+        }
+
+        public DbSet<User> Users { get; set; }
     }
 }

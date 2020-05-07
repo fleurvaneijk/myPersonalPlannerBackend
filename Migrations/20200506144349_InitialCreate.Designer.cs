@@ -7,7 +7,7 @@ using MyPersonalPlannerBackend.Model;
 
 namespace MyPersonalPlannerBackend.Migrations
 {
-    [DbContext(typeof(DBContext))]
+    [DbContext(typeof(MariaDBContext))]
     [Migration("20200506144349_InitialCreate")]
     partial class InitialCreate
     {
