@@ -1,18 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using MyPersonalPlannerBackend.Handler;
 using MyPersonalPlannerBackend.Model;
+using MyPersonalPlannerBackend.Repository;
+using MyPersonalPlannerBackend.Repository.IRepository;
+using MyPersonalPlannerBackend.Service;
+using MyPersonalPlannerBackend.Service.IService;
+using AuthenticationService = MyPersonalPlannerBackend.Service.AuthenticationService;
+using IAuthenticationService = MyPersonalPlannerBackend.Service.IService.IAuthenticationService;
 
 namespace MyPersonalPlannerBackend
 {
@@ -32,10 +33,19 @@ namespace MyPersonalPlannerBackend
             var dbname = Configuration["dbname"];
             var dbuser = Configuration["dbuser"];
             var dbpassword = Configuration["dbpassword"];
-            services.AddDbContext<MariaDBContext>(options => {
-                options.UseMySql("Server=" + dbhost + "; Database=" + dbname + ";User=" + dbuser +";Password=" + dbpassword);
-            });
+
             services.AddControllers();
+
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddDbContext<MariaDBContext>(options => {
+                options.UseMySql("Server=" + dbhost + "; Database=" + dbname + ";User=" + dbuser + ";Password=" + dbpassword);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +58,7 @@ namespace MyPersonalPlannerBackend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -56,8 +67,9 @@ namespace MyPersonalPlannerBackend
                 {
                     await context.Response.WriteAsync("Hello World!!");
                 });
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
+
         }
     }
 }

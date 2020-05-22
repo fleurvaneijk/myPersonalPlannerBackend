@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.RouteAnalyzer" Version="0.5.3" />
+    <PackageReference Include="BCrypt" Version="1.0.0" />
     <PackageReference Include="Microsoft.CodeCoverage" Version="16.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -19,7 +21,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1">
       <PrivateAssets>all</PrivateAssets>
@@ -31,7 +33,6 @@
   <ItemGroup>
     <Folder Include="BusinessLogic\IBusinessLogic\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Repository\IRepository\" />
   </ItemGroup>
 
 
