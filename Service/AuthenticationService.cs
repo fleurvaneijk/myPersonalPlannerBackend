@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DevOne.Security.Cryptography.BCrypt;
 using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
@@ -19,11 +20,9 @@ namespace MyPersonalPlannerBackend.Service
         public async Task<User> Authenticate(string username, string password)
         {
             var user = await Task.Run(( ) => _userRepository.GetUser(username));
-
-            //todo: controleer wachtwoord - wachtwoord is nu nog plain text
             if (user != null && BCryptHelper.CheckPassword(password, user.Password))
             {
-                return user.WithoutPassword();
+                return user;
             }
 
             return null;

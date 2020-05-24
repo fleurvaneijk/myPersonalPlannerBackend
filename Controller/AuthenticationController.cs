@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Service.IService;
 
@@ -23,11 +25,10 @@ namespace MyPersonalPlannerBackend.Controller
         public async Task<IActionResult> Authenticate([FromBody]Authenticate model)
         {
             var user = await _authenticationService.Authenticate(model.Username, model.Password);
-
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return Unauthorized("Username or password is incorrect");
 
-            return Ok(user);
+            return Ok(user.WithoutPassword());
         }
 
 

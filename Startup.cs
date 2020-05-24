@@ -34,6 +34,13 @@ namespace MyPersonalPlannerBackend
             var dbuser = Configuration["dbuser"];
             var dbpassword = Configuration["dbpassword"];
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddControllers();
 
             services.AddAuthentication("BasicAuthentication")
@@ -55,6 +62,8 @@ namespace MyPersonalPlannerBackend
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 
