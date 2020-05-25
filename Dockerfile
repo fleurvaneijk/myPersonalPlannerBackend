@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["MyPersonalPlannerBackend.csproj", ""]
 RUN dotnet restore "./MyPersonalPlannerBackend.csproj"
+RUN dotnet tool install --global dotnet-ef && export PATH="$PATH:/root/.dotnet/tools" && dotnet ef database update
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "MyPersonalPlannerBackend.csproj" -c Release -o /app/build
