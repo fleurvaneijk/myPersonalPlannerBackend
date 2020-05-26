@@ -28,6 +28,11 @@ namespace MyPersonalPlannerBackend.Service
             return user;
         }
 
+        public User GetUserByID(int id)
+        {
+            return  _userRepository.GetUserByID(id);
+        }
+
         public void DeleteAccount(string username, string password)
         {
             throw new NotImplementedException();

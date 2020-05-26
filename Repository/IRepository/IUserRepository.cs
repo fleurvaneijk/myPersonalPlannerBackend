@@ -9,5 +9,6 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
         User AddUser(User user);
 
         void DeleteUser(int id);
+        User GetUserByID(int id);
     }
 }

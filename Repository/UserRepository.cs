@@ -13,7 +13,7 @@ namespace MyPersonalPlannerBackend.Repository
             _context = context;
         }
 
-              public User GetUser(string username)
+        public User GetUser(string username)
         {
             return _context.Users
                 .SingleOrDefault(u => u.Username == username);
@@ -29,6 +29,12 @@ namespace MyPersonalPlannerBackend.Repository
         public void DeleteUser(int id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public User GetUserByID(int id)
+        {
+            return _context.Users
+                .SingleOrDefault(u => u.Id == id);
         }
     }
 }
