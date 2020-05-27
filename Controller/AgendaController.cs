@@ -29,7 +29,7 @@ namespace MyPersonalPlannerBackend.Controller
         {
             var userID = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             User user = _userService.GetUserByID(Convert.ToInt32(userID));
-            if (user.AgendaLink != "")
+            if (!user.AgendaLink.Equals(""))
             {
                 Client.DefaultRequestHeaders.Accept.Clear();
                 var request = Client.GetStreamAsync(user.AgendaLink);
