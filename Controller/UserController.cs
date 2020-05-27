@@ -26,5 +26,13 @@ namespace MyPersonalPlannerBackend.Controller
             var user = _userService.SignUp(model);
             return Ok(user);
         }
+
+        [AllowAnonymous]
+        [HttpPost("changeusername")]
+        public async Task<IActionResult> ChangeUsername([FromBody]User model, string newUsername)
+        {
+            var user = _userService.ChangeUsername(model, newUsername);
+            return Ok(user);
+        }
     }
 }

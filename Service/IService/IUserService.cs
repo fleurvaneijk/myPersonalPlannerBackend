@@ -11,7 +11,11 @@ namespace MyPersonalPlannerBackend.Service.IService
                
         User SignUp(User user);
 
-        void DeleteAccount(string username, string password);
+        User ChangeUsername(User user, string newUsername);
+
+        User ChangePassword(User user, string newPassword);
+
+        void DeleteAccount(User user);
 
         public User GetUserByID(int id);
     }
