@@ -26,6 +26,13 @@ namespace MyPersonalPlannerBackend.Repository
             return user;
         }
 
+        public User ChangeUsername(User user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            return user;
+        }
+
         public void DeleteUser(int id)
         {
             throw new System.NotImplementedException();

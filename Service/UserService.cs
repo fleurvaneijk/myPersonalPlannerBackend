@@ -13,6 +13,7 @@ namespace MyPersonalPlannerBackend.Service
     public class UserService : IUserService
     {
         IUserRepository _userRepository;
+        AuthenticationService _authenticationService;
 
         public UserService(IUserRepository userRepository)
         {
@@ -28,12 +29,32 @@ namespace MyPersonalPlannerBackend.Service
             return user;
         }
 
+        public User ChangeUsername(User user, string newUsername)
+        {
+            if(_authenticationService.Authenticate(user.Username, user.Password) != null)
+            {
+                user.Username = newUsername;
+                _userRepository.ChangeUsername(user);
+                return user;
+            } else
+            {
+                throw new UnauthorizedAccessException();
+            }
+        }
+
         public User GetUserByID(int id)
         {
             return  _userRepository.GetUserByID(id);
         }
 
         public void DeleteAccount(string username, string password)
+        public User ChangePassword(User user, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void DeleteAccount(User user)
         {
             throw new NotImplementedException();
         }
