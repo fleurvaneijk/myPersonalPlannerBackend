@@ -79,11 +79,5 @@ namespace MyPersonalPlannerBackend.Service
                 throw new UnauthorizedAccessException();
             }
         }
-
-
-        public void DeleteAccount(User user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
