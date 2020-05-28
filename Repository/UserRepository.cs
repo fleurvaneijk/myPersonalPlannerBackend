@@ -33,9 +33,18 @@ namespace MyPersonalPlannerBackend.Repository
             return user;
         }
 
-        public void DeleteUser(int id)
+        public User ChangePassword(User user)
         {
-            throw new System.NotImplementedException();
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            return user;
+        }
+
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+
         }
 
         public User GetUserByID(int id)
