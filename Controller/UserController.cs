@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPersonalPlannerBackend.Helpers;
@@ -29,10 +30,27 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpPost("changeusername")]
-        public async Task<IActionResult> ChangeUsername([FromBody]User model, string newUsername)
+        public async Task<IActionResult> ChangeUsername([FromBody]ChangeUsername model)
         {
-            var user = _userService.ChangeUsername(model, newUsername);
-            return Ok(user);
+            var user = _userService.ChangeUsername(model);
+            return Ok(user.WithoutPassword());
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("changepassword")]
+        public async Task<IActionResult> ChangePassword([FromBody]ChangePassword model)
+        {
+            var user = _userService.ChangePassword(model);
+            return Ok(user.WithoutPassword());
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("deleteaccount")]
+        public async Task<IActionResult> DeleteAccount([FromBody]User model)
+        {
+           _userService.DeleteAccount(model);
+            return Ok();
         }
     }
 }

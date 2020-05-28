@@ -13,11 +13,12 @@ namespace MyPersonalPlannerBackend.Service
     public class UserService : IUserService
     {
         IUserRepository _userRepository;
-        AuthenticationService _authenticationService;
+        IAuthenticationService _authenticationService;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IAuthenticationService authenticationService)
         {
             _userRepository = userRepository;
+            _authenticationService = authenticationService;
         }
 
         public User SignUp(User user)
@@ -29,13 +30,30 @@ namespace MyPersonalPlannerBackend.Service
             return user;
         }
 
-        public User ChangeUsername(User user, string newUsername)
+        public User ChangeUsername(ChangeUsername user)
         {
-            if(_authenticationService.Authenticate(user.Username, user.Password) != null)
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if(authenticatedUser != null)
             {
-                user.Username = newUsername;
-                _userRepository.ChangeUsername(user);
-                return user;
+                authenticatedUser.Username = user.NewUsername;
+                _userRepository.ChangeUsername(authenticatedUser);
+                return authenticatedUser;
+            } else
+            {
+                throw new UnauthorizedAccessException();
+            }
+        }
+
+        public User ChangePassword(ChangePassword user)
+        {
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if (authenticatedUser != null)
+            {
+                var salt = BCryptHelper.GenerateSalt(6);
+                var hashedPassword = BCryptHelper.HashPassword(user.NewPassword, salt);
+                authenticatedUser.Password = hashedPassword;
+                _userRepository.ChangePassword(authenticatedUser);
+                return authenticatedUser;
             } else
             {
                 throw new UnauthorizedAccessException();
@@ -47,10 +65,19 @@ namespace MyPersonalPlannerBackend.Service
             return  _userRepository.GetUserByID(id);
         }
 
-        public void DeleteAccount(string username, string password)
-        public User ChangePassword(User user, string newPassword)
+
+
+        public void DeleteAccount(User user)
         {
-            throw new NotImplementedException();
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if (authenticatedUser != null)
+            {
+                _userRepository.DeleteUser(authenticatedUser);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException();
+            }
         }
 
 
