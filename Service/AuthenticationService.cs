@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DevOne.Security.Cryptography.BCrypt;
-using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;

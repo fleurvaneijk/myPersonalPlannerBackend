@@ -6,7 +6,7 @@ namespace MyPersonalPlannerBackend.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private MariaDBContext _context;
+        private readonly MariaDBContext _context;
 
         public UserRepository(MariaDBContext context)
         {
@@ -47,7 +47,7 @@ namespace MyPersonalPlannerBackend.Repository
 
         }
 
-        public User GetUserByID(int id)
+        public User GetUserById(int id)
         {
             return _context.Users
                 .SingleOrDefault(u => u.Id == id);
