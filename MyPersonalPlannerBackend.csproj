@@ -8,6 +8,7 @@
     <DockerfileContext>.</DockerfileContext>
     <StartupObject>MyPersonalPlannerBackend.Program</StartupObject>
 	  <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+	  <SonarQubeTestProject>false</SonarQubeTestProject>
   </PropertyGroup>
 
   <ItemGroup>
