@@ -24,7 +24,7 @@ namespace MyPersonalPlannerBackend.Controller
         }
 
         [HttpGet]
-        public async Task<IActionResult> RetrieveAgendaFromGoogle()
+        public IActionResult RetrieveAgendaFromGoogle()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var user = _userService.GetUserByID(Convert.ToInt32(userId));

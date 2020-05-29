@@ -8,8 +8,8 @@ namespace MyPersonalPlannerBackend.Service
 {
     public class UserService : IUserService
     {
-        readonly IUserRepository _userRepository;
-        readonly IAuthenticationService _authenticationService;
+        private readonly IUserRepository _userRepository;
+        private readonly IAuthenticationService _authenticationService;
 
         public UserService(IUserRepository userRepository, IAuthenticationService authenticationService)
         {
@@ -32,7 +32,7 @@ namespace MyPersonalPlannerBackend.Service
             if(authenticatedUser != null)
             {
                 authenticatedUser.Username = user.NewUsername;
-                _userRepository.ChangeUsername(authenticatedUser);
+                _userRepository.UpdateUser(authenticatedUser);
                 return authenticatedUser;
             } else
             {
@@ -47,7 +47,7 @@ namespace MyPersonalPlannerBackend.Service
             var salt = BCryptHelper.GenerateSalt(6);
             var hashedPassword = BCryptHelper.HashPassword(user.NewPassword, salt);
             authenticatedUser.Password = hashedPassword;
-            _userRepository.ChangePassword(authenticatedUser);
+            _userRepository.UpdateUser(authenticatedUser);
             return authenticatedUser;
 
         }

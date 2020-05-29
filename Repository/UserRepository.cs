@@ -26,14 +26,7 @@ namespace MyPersonalPlannerBackend.Repository
             return user;
         }
 
-        public User ChangeUsername(User user)
-        {
-            _context.Users.Update(user);
-            _context.SaveChanges();
-            return user;
-        }
-
-        public User ChangePassword(User user)
+        public User UpdateUser(User user)
         {
             _context.Users.Update(user);
             _context.SaveChanges();

@@ -21,7 +21,7 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp([FromBody]User model)
+        public IActionResult SignUp([FromBody]User model)
         {
             var user = _userService.SignUp(model);
             return Ok(user);
@@ -29,7 +29,7 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpPost("changeusername")]
-        public async Task<IActionResult> ChangeUsername([FromBody]ChangeUsername model)
+        public IActionResult ChangeUsername([FromBody]ChangeUsername model)
         {
             var user = _userService.ChangeUsername(model);
             return Ok(user.WithoutPassword());
@@ -38,7 +38,7 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpPost("changepassword")]
-        public async Task<IActionResult> ChangePassword([FromBody]ChangePassword model)
+        public IActionResult ChangePassword([FromBody]ChangePassword model)
         {
             var user = _userService.ChangePassword(model);
             return Ok(user.WithoutPassword());
@@ -46,7 +46,7 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpDelete("deleteaccount")]
-        public async Task<IActionResult> DeleteAccount([FromBody]User model)
+        public IActionResult DeleteAccount([FromBody]User model)
         {
            _userService.DeleteAccount(model);
             return Ok();
