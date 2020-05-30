@@ -6,7 +6,7 @@ namespace MyPersonalPlannerBackend.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private MariaDBContext _context;
+        private readonly MariaDBContext _context;
 
         public UserRepository(MariaDBContext context)
         {
@@ -26,12 +26,21 @@ namespace MyPersonalPlannerBackend.Repository
             return user;
         }
 
-        public void DeleteUser(int id)
+        public User UpdateUser(User user)
         {
-            throw new System.NotImplementedException();
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            return user;
         }
 
-        public User GetUserByID(int id)
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+
+        }
+
+        public User GetUserById(int id)
         {
             return _context.Users
                 .SingleOrDefault(u => u.Id == id);

@@ -21,10 +21,35 @@ namespace MyPersonalPlannerBackend.Controller
 
         [AllowAnonymous]
         [HttpPost("signup")]
-        public async Task<IActionResult> SignUp([FromBody]User model)
+        public IActionResult SignUp([FromBody]User model)
         {
             var user = _userService.SignUp(model);
             return Ok(user);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("changeusername")]
+        public IActionResult ChangeUsername([FromBody]ChangeUsername model)
+        {
+            var user = _userService.ChangeUsername(model);
+            return Ok(user.WithoutPassword());
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("changepassword")]
+        public IActionResult ChangePassword([FromBody]ChangePassword model)
+        {
+            var user = _userService.ChangePassword(model);
+            return Ok(user.WithoutPassword());
+        }
+
+        [AllowAnonymous]
+        [HttpDelete("deleteaccount")]
+        public IActionResult DeleteAccount([FromBody]User model)
+        {
+           _userService.DeleteAccount(model);
+            return Ok();
         }
     }
 }

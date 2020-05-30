@@ -1,22 +1,20 @@
 ﻿using DevOne.Security.Cryptography.BCrypt;
-using Microsoft.Extensions.Logging.Abstractions;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyPersonalPlannerBackend.Service
 {
     public class UserService : IUserService
     {
-        IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IAuthenticationService _authenticationService;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IAuthenticationService authenticationService)
         {
             _userRepository = userRepository;
+            _authenticationService = authenticationService;
         }
 
         public User SignUp(User user)
@@ -28,14 +26,47 @@ namespace MyPersonalPlannerBackend.Service
             return user;
         }
 
-        public User GetUserByID(int id)
+        public User ChangeUsername(ChangeUsername user)
         {
-            return  _userRepository.GetUserByID(id);
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if(authenticatedUser != null)
+            {
+                authenticatedUser.Username = user.NewUsername;
+                _userRepository.UpdateUser(authenticatedUser);
+                return authenticatedUser;
+            } else
+            {
+                throw new UnauthorizedAccessException();
+            }
         }
 
-        public void DeleteAccount(string username, string password)
+        public User ChangePassword(ChangePassword user)
         {
-            throw new NotImplementedException();
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if (authenticatedUser == null) throw new UnauthorizedAccessException();
+            var salt = BCryptHelper.GenerateSalt(6);
+            var hashedPassword = BCryptHelper.HashPassword(user.NewPassword, salt);
+            authenticatedUser.Password = hashedPassword;
+            _userRepository.UpdateUser(authenticatedUser);
+            return authenticatedUser;
+
+        }
+
+        public User GetUserByID(int id)
+        {
+            return  _userRepository.GetUserById(id);
+        }
+
+
+
+        public void DeleteAccount(User user)
+        {
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+            if (authenticatedUser == null)
+            {
+                throw new UnauthorizedAccessException();
+            }
+            _userRepository.DeleteUser(authenticatedUser);
         }
     }
 }

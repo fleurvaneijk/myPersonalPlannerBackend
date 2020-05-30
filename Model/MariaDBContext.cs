@@ -12,10 +12,10 @@ namespace MyPersonalPlannerBackend.Model
 
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<User>()
-                .HasIndex(User => User.Username)
+            modelBuilder.Entity<User>()
+                .HasIndex(user => user.Username)
                 .IsUnique();
         }
     }

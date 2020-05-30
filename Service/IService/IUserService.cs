@@ -1,8 +1,4 @@
 ﻿using MyPersonalPlannerBackend.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyPersonalPlannerBackend.Service.IService
 {
@@ -11,7 +7,11 @@ namespace MyPersonalPlannerBackend.Service.IService
                
         User SignUp(User user);
 
-        void DeleteAccount(string username, string password);
+        User ChangeUsername(ChangeUsername user);
+
+        User ChangePassword(ChangePassword user);
+
+        void DeleteAccount(User user);
 
         public User GetUserByID(int id);
     }
