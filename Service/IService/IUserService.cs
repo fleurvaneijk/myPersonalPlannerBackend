@@ -14,5 +14,6 @@ namespace MyPersonalPlannerBackend.Service.IService
         void DeleteAccount(User user);
 
         public User GetUserByID(int id);
+        void ChangeAgenda(User user, string agendaLink);
     }
 }

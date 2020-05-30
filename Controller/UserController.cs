@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPersonalPlannerBackend.Helpers;
@@ -41,6 +43,15 @@ namespace MyPersonalPlannerBackend.Controller
         public IActionResult ChangePassword([FromBody]ChangePassword model)
         {
             var user = _userService.ChangePassword(model);
+            return Ok(user.WithoutPassword());
+        }
+        
+        [HttpPost("changeAgenda")]
+        public IActionResult ChangeAgenda([FromBody]Agenda agenda)
+        {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var user = _userService.GetUserByID(Convert.ToInt32(userId));
+            _userService.ChangeAgenda(user, agenda.AgendaLink);
             return Ok(user.WithoutPassword());
         }
 

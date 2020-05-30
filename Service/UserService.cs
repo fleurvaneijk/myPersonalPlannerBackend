@@ -57,6 +57,11 @@ namespace MyPersonalPlannerBackend.Service
             return  _userRepository.GetUserById(id);
         }
 
+        public void ChangeAgenda(User user, string agendaLink)
+        {
+            user.AgendaLink = agendaLink;
+            _userRepository.UpdateUser(user);
+        }
 
 
         public void DeleteAccount(User user)
