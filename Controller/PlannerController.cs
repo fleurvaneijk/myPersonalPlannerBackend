@@ -42,5 +42,11 @@ namespace MyPersonalPlannerBackend.Controller
             return _plannerService.GetPlannerItems(plannerId);
         }
 
+        [HttpGet("getUsersInPlanner")]
+        public IEnumerable<User> GetUsersInPlanner(int plannerId)
+        {
+            return _plannerService.GetUsersInPlanner(plannerId);
+        }
+
     }
 }

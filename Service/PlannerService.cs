@@ -10,10 +10,13 @@ namespace MyPersonalPlannerBackend.Service
     public class PlannerService : IPlannerService
     {
         private readonly IPlannerRepository _plannerRepository;
+        private readonly IUserService _userService;
 
-        public PlannerService(IPlannerRepository plannerRepository)
+
+        public PlannerService(IPlannerRepository plannerRepository, IUserService userService)
         {
             _plannerRepository = plannerRepository;
+            _userService = userService;
         }
 
         public IEnumerable<int> GetPlannerIds(int userId)
@@ -30,6 +33,19 @@ namespace MyPersonalPlannerBackend.Service
         public IEnumerable<PlannerItem> GetPlannerItems(int plannerId)
         {
             return _plannerRepository.GetPlannerItems(plannerId);
+        }
+
+        public IEnumerable<User> GetUsersInPlanner(int plannerId)
+        {
+            var userIds = _plannerRepository.GetUserIdsInPlanner(plannerId);
+            var users = new List<User>();
+            foreach (var id in userIds)
+            {
+                users.Add(_userService.GetUserById(id));
+            }
+
+            return users;
+
         }
     }
 }

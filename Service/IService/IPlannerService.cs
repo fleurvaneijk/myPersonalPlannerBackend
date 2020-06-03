@@ -9,5 +9,6 @@ namespace MyPersonalPlannerBackend.Service.IService
         IEnumerable<int> GetPlannerIds(int userId);
         Planner GetPlanner(in int plannerId);
         IEnumerable<PlannerItem> GetPlannerItems(int plannerId);
-        }
+        IEnumerable<User> GetUsersInPlanner(int plannerId);
+    }
 }

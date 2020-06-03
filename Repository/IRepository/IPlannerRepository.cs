@@ -8,6 +8,7 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
         IEnumerable<int> GetPlannerIds(int userId);
         Planner GetPlanner(int plannerId);
         IEnumerable<PlannerItem> GetPlannerItems(int plannerId);
-        
+        IEnumerable<int> GetUserIdsInPlanner(int plannerId);
+
     }
 }

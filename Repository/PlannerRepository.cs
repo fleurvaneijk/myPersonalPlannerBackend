@@ -17,13 +17,13 @@ namespace MyPersonalPlannerBackend.Repository
 
         public IEnumerable<int> GetPlannerIds(int userId)
         {
-            var hoi = _context.PlannerUsers
+            var plannerIds = _context.PlannerUsers
                 .Where(pu => pu.UserId ==  userId)
                 .Select(i => i.PlannerId)
                 .ToList();
 
 
-            return hoi;
+            return plannerIds;
         }
 
         public Planner GetPlanner(int plannerId)
@@ -42,6 +42,16 @@ namespace MyPersonalPlannerBackend.Repository
         {
             return _context.PlannerItems
                 .SingleOrDefault(i => i.Id == id);
+        }
+        public IEnumerable<int> GetUserIdsInPlanner(int plannerId)
+        {
+            var userIds = _context.PlannerUsers
+                .Where(pu => pu.PlannerId == plannerId)
+                .Select(i => i.UserId)
+                .ToList();
+
+
+            return userIds;
         }
     }
 }
