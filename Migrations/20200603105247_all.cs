@@ -3,34 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyPersonalPlannerBackend.Migrations
 {
-    public partial class Planner : Migration
+    public partial class all : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "PlannerItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    User = table.Column<string>(nullable: true),
-                    Day = table.Column<int>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    isDone = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlannerItems", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Planners",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Owner = table.Column<string>(nullable: true)
+                    Title = table.Column<string>(nullable: true),
+                    Owner = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,25 +22,40 @@ namespace MyPersonalPlannerBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlannerPlannerItems",
+                name: "Users",
                 columns: table => new
                 {
-                    PlannerId = table.Column<int>(nullable: false),
-                    PlannerItemId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Username = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    AgendaLink = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlannerPlannerItems", x => new { x.PlannerId, x.PlannerItemId });
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlannerItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    PlannerId = table.Column<int>(nullable: false),
+                    User = table.Column<int>(nullable: false),
+                    Day = table.Column<int>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    IsDone = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlannerItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PlannerPlannerItems_Planners_PlannerId",
+                        name: "FK_PlannerItems_Planners_PlannerId",
                         column: x => x.PlannerId,
                         principalTable: "Planners",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PlannerPlannerItems_PlannerItems_PlannerItemId",
-                        column: x => x.PlannerItemId,
-                        principalTable: "PlannerItems",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -92,9 +91,9 @@ namespace MyPersonalPlannerBackend.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlannerPlannerItems_PlannerItemId",
-                table: "PlannerPlannerItems",
-                column: "PlannerItemId");
+                name: "IX_PlannerItems_PlannerId",
+                table: "PlannerItems",
+                column: "PlannerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Planners_Id",
@@ -106,21 +105,27 @@ namespace MyPersonalPlannerBackend.Migrations
                 name: "IX_PlannerUsers_UserId",
                 table: "PlannerUsers",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlannerPlannerItems");
+                name: "PlannerItems");
 
             migrationBuilder.DropTable(
                 name: "PlannerUsers");
 
             migrationBuilder.DropTable(
-                name: "PlannerItems");
+                name: "Planners");
 
             migrationBuilder.DropTable(
-                name: "Planners");
+                name: "Users");
         }
     }
 }

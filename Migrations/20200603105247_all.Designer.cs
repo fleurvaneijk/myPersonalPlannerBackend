@@ -8,8 +8,8 @@ using MyPersonalPlannerBackend.Model;
 namespace MyPersonalPlannerBackend.Migrations
 {
     [DbContext(typeof(MariaDBContext))]
-    [Migration("20200602142428_PlannerItem")]
-    partial class PlannerItem
+    [Migration("20200603105247_all")]
+    partial class all
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,10 @@ namespace MyPersonalPlannerBackend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Owner")
+                    b.Property<int>("Owner")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
@@ -47,17 +50,17 @@ namespace MyPersonalPlannerBackend.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("PlannerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("User")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("isDone")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("User")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
