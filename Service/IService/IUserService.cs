@@ -1,4 +1,5 @@
-﻿using MyPersonalPlannerBackend.Model;
+﻿using Microsoft.AspNetCore.Http;
+using MyPersonalPlannerBackend.Model;
 
 namespace MyPersonalPlannerBackend.Service.IService
 {
@@ -13,7 +14,10 @@ namespace MyPersonalPlannerBackend.Service.IService
 
         void DeleteAccount(User user);
 
-        public User GetUserByID(int id);
+        public User GetUserById(int id);
+
+        User GetLoggedInUser(HttpContext context);
+        
         void ChangeAgenda(User user, string agendaLink);
     }
 }

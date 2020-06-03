@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
@@ -29,6 +26,8 @@ namespace MyPersonalPlannerBackend.Controller
             return Ok(user);
         }
 
+        //TODO: Remove AllowAnonymous
+
         [AllowAnonymous]
         [HttpPost("changeusername")]
         public IActionResult ChangeUsername([FromBody]ChangeUsername model)
@@ -49,8 +48,7 @@ namespace MyPersonalPlannerBackend.Controller
         [HttpPost("changeAgenda")]
         public IActionResult ChangeAgenda([FromBody]Agenda agenda)
         {
-            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var user = _userService.GetUserByID(Convert.ToInt32(userId));
+            var user = _userService.GetLoggedInUser(HttpContext);
             _userService.ChangeAgenda(user, agenda.AgendaLink);
             return Ok(user.WithoutPassword());
         }

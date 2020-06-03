@@ -3,6 +3,8 @@ using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
 using System;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace MyPersonalPlannerBackend.Service
 {
@@ -52,7 +54,7 @@ namespace MyPersonalPlannerBackend.Service
 
         }
 
-        public User GetUserByID(int id)
+        public User GetUserById(int id)
         {
             return  _userRepository.GetUserById(id);
         }
@@ -72,6 +74,13 @@ namespace MyPersonalPlannerBackend.Service
                 throw new UnauthorizedAccessException();
             }
             _userRepository.DeleteUser(authenticatedUser);
+        }
+
+        public User GetLoggedInUser(HttpContext context)
+        {
+            var userId = Convert.ToInt32(context.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var user = GetUserById(userId);
+            return user;
         }
     }
 }

@@ -56,6 +56,8 @@ namespace MyPersonalPlannerBackend
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPlannerService, PlannerService>();
+            services.AddScoped<IPlannerRepository, PlannerRepository>();
 
             services.AddDbContext<MariaDBContext>(options => {
                 options.UseMySql("Server=" + dbhost + "; Database=" + dbname + ";User=" + dbuser + ";Password=" + dbpassword);
