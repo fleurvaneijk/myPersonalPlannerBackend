@@ -25,7 +25,5 @@ namespace MyPersonalPlannerBackend.Service
 
             return null;
         }
-
-
     }
 }

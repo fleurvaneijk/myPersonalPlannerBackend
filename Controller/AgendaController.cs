@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyPersonalPlannerBackend.Service.IService;
@@ -15,7 +12,7 @@ namespace MyPersonalPlannerBackend.Controller
     {
         
         private readonly IUserService _userService;
-        
+
         private static readonly HttpClient Client = new HttpClient();
 
         public AgendaController(IUserService userService)
@@ -26,8 +23,7 @@ namespace MyPersonalPlannerBackend.Controller
         [HttpGet]
         public IActionResult RetrieveAgendaFromGoogle()
         {
-            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var user = _userService.GetUserByID(Convert.ToInt32(userId));
+            var user = _userService.GetLoggedInUser(HttpContext);
             if (string.IsNullOrEmpty(user.AgendaLink)) return Ok("");
             Client.DefaultRequestHeaders.Accept.Clear();
             var request = Client.GetStreamAsync(user.AgendaLink);

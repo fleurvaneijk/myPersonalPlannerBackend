@@ -2,16 +2,16 @@
 
 namespace MyPersonalPlannerBackend.Model
 {
-    public class User
+    public class Planner
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        
-        public string AgendaLink { get; set; }
+        public string Title { get; set; }
+        public int Owner { get; set; }
+
+        public IList<PlannerItem> PlannerItems { get; set; }
         public IList<PlannerUser> PlannerUsers { get; set; }
 
-        public User()
+        public Planner()
         {
 
         }
