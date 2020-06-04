@@ -34,8 +34,5 @@
   <ItemGroup>
     <Folder Include="BusinessLogic\IBusinessLogic\" />
     <Folder Include="Migrations" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
-
-
 </Project>
