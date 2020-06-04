@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Service.IService;
 using PlannerItem = MyPersonalPlannerBackend.Model.PlannerItem;
@@ -45,7 +46,7 @@ namespace MyPersonalPlannerBackend.Controller
         [HttpGet("getUsersInPlanner")]
         public IEnumerable<User> GetUsersInPlanner(int plannerId)
         {
-            return _plannerService.GetUsersInPlanner(plannerId);
+            return _plannerService.GetUsersInPlanner(plannerId).WithoutPasswords();
         }
 
     }
