@@ -57,7 +57,7 @@ namespace MyPersonalPlannerBackend.Controller
         [HttpDelete("deleteaccount")]
         public IActionResult DeleteAccount([FromBody]User model)
         {
-           _userService.DeleteAccount(model);
+           _userService.DeleteUser(model);
             return Ok();
         }
     }

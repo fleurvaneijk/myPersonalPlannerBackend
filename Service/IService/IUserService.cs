@@ -12,9 +12,9 @@ namespace MyPersonalPlannerBackend.Service.IService
 
         User ChangePassword(ChangePassword user);
 
-        void DeleteAccount(User user);
+        void DeleteUser(User user);
 
-        public User GetUserById(int id);
+        public User GetUser(int id);
 
         User GetLoggedInUser(HttpContext context);
         
