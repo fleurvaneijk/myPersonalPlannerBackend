@@ -5,6 +5,7 @@ using MyPersonalPlannerBackend.Service.IService;
 using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using MyPersonalPlannerBackend.Helpers;
 
 namespace MyPersonalPlannerBackend.Service
 {
@@ -21,9 +22,7 @@ namespace MyPersonalPlannerBackend.Service
 
         public User SignUp(User user)
         {
-            var salt = BCryptHelper.GenerateSalt(6);
-            var hashedPassword = BCryptHelper.HashPassword(user.Password, salt);
-            user.Password = hashedPassword;
+            user.Password = user.Password.HashPassword();
             _userRepository.AddUser(user);
             return user;
         }
@@ -31,42 +30,36 @@ namespace MyPersonalPlannerBackend.Service
         public User ChangeUsername(ChangeUsername user)
         {
             var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
-            if(authenticatedUser != null)
-            {
-                authenticatedUser.Username = user.NewUsername;
-                _userRepository.UpdateUser(authenticatedUser);
-                return authenticatedUser;
-            } else
-            {
-                throw new UnauthorizedAccessException();
-            }
-        }
-
-        public User ChangePassword(ChangePassword user)
-        {
-            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
-            if (authenticatedUser == null) throw new UnauthorizedAccessException();
-            var salt = BCryptHelper.GenerateSalt(6);
-            var hashedPassword = BCryptHelper.HashPassword(user.NewPassword, salt);
-            authenticatedUser.Password = hashedPassword;
+            
+            authenticatedUser.Username = user.NewUsername;
             _userRepository.UpdateUser(authenticatedUser);
             return authenticatedUser;
 
         }
 
-        public User GetUserById(int id)
+        public User ChangePassword(ChangePassword user)
+        {
+            var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
+
+            authenticatedUser.Password = user.NewPassword.HashPassword();
+            _userRepository.UpdateUser(authenticatedUser);
+            return authenticatedUser;
+
+        }
+
+        public User GetUser(int id)
         {
             return  _userRepository.GetUserById(id);
         }
 
-        public void ChangeAgenda(User user, string agendaLink)
+        public void ChangeAgenda(User user, string agendaLink) //TODO: Does this belong in this class? clearer title 
         {
             user.AgendaLink = agendaLink;
             _userRepository.UpdateUser(user);
         }
 
 
-        public void DeleteAccount(User user)
+        public void DeleteUser(User user)
         {
             var authenticatedUser = _authenticationService.Authenticate(user.Username, user.Password).Result;
             if (authenticatedUser == null)
@@ -79,7 +72,7 @@ namespace MyPersonalPlannerBackend.Service
         public User GetLoggedInUser(HttpContext context)
         {
             var userId = Convert.ToInt32(context.User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            var user = GetUserById(userId);
+            var user = GetUser(userId);
             return user;
         }
     }

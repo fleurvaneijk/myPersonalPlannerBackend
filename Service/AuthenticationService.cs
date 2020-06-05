@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DevOne.Security.Cryptography.BCrypt;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
@@ -22,8 +23,7 @@ namespace MyPersonalPlannerBackend.Service
             {
                 return user;
             }
-
-            return null;
+            throw new UnauthorizedAccessException();
         }
     }
 }

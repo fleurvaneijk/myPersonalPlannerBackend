@@ -1,9 +1,9 @@
 ﻿using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using MyPersonalPlannerBackend.Helpers;
 
 namespace MyPersonalPlannerBackend.Service
 {
@@ -19,33 +19,70 @@ namespace MyPersonalPlannerBackend.Service
             _userService = userService;
         }
 
-        public IEnumerable<int> GetPlannerIds(int userId)
+        public IEnumerable<PlannerView> GetPlanners(int userId)
+        {
+            var plannerIds = GetPlannerIds(userId);
+
+            var planners = new List<PlannerView>();
+
+            foreach (var id in plannerIds)
+            {
+                var planner = _plannerRepository.GetPlanner(id);
+                var items = GetPlannerItems(id);
+                var users = GetUsersInPlanner(id);
+
+                var plannerView = assemblePlannerView(planner, items, users);
+
+                planners.Add(plannerView);
+            }
+
+            return planners;
+        }
+
+        private PlannerView assemblePlannerView(Planner planner, IEnumerable<PlannerItem> items, IEnumerable<User> users)
+        {
+            var plannerItems = items.ToList();
+            
+            foreach (var item in plannerItems)
+            {
+                item.Planner = null;
+            }
+
+            var plannerView = new PlannerView()
+            {
+                Id = planner.Id,
+                Owner = planner.Owner,
+                Title = planner.Title,
+                PlannerItems = plannerItems.ToList(),
+                Users = users.ToList()
+            };
+
+            return plannerView;
+        }
+
+        private IEnumerable<int> GetPlannerIds(int userId)
         {
             var plannerIds = _plannerRepository.GetPlannerIds(userId);
             return plannerIds.Distinct();
         }
 
-        public Planner GetPlanner(in int plannerId)
-        {
-            return _plannerRepository.GetPlanner(plannerId);
-        }
-
-        public IEnumerable<PlannerItem> GetPlannerItems(int plannerId)
+        private IEnumerable<PlannerItem> GetPlannerItems(int plannerId)
         {
             return _plannerRepository.GetPlannerItems(plannerId);
         }
 
-        public IEnumerable<User> GetUsersInPlanner(int plannerId)
+        private IEnumerable<User> GetUsersInPlanner(int plannerId)
         {
             var userIds = _plannerRepository.GetUserIdsInPlanner(plannerId);
             var users = new List<User>();
             foreach (var id in userIds)
             {
-                users.Add(_userService.GetUserById(id));
+                users.Add(_userService.GetUser(id));
             }
 
-            return users;
+            return users.WithoutPasswords();
 
         }
+       
     }
 }

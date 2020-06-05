@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MyPersonalPlannerBackend.Helpers;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Service.IService;
-using PlannerItem = MyPersonalPlannerBackend.Model.PlannerItem;
 
 namespace MyPersonalPlannerBackend.Controller
 {
@@ -22,32 +20,12 @@ namespace MyPersonalPlannerBackend.Controller
             _userService = userService;
         }
 
-        [HttpGet("getPlannerIds")]
-        public IEnumerable<int> GetPlannerIds()
+        [HttpGet("getPlanners")]
+        public IEnumerable<PlannerView> GetPlanners()
         {
             var userId = _userService.GetLoggedInUser(HttpContext).Id;
-            var plannerIds = _plannerService.GetPlannerIds(userId);
-
-            return plannerIds;
+            var planners = _plannerService.GetPlanners(userId);
+            return planners;
         }
-
-        [HttpGet("getPlanner")]
-        public Planner GetPlanner(int plannerId)
-        {
-            return _plannerService.GetPlanner(plannerId);
-        }
-
-        [HttpGet("getPlannerItems")]
-        public IEnumerable<PlannerItem> GetPlannerItems(int plannerId)
-        {
-            return _plannerService.GetPlannerItems(plannerId);
-        }
-
-        [HttpGet("getUsersInPlanner")]
-        public IEnumerable<User> GetUsersInPlanner(int plannerId)
-        {
-            return _plannerService.GetUsersInPlanner(plannerId).WithoutPasswords();
-        }
-
     }
 }
