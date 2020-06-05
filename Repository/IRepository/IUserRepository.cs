@@ -12,5 +12,6 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
 
         void DeleteUser(User user);
         User GetUserById(int id);
+        User GetUserByUsername(string username);
     }
 }

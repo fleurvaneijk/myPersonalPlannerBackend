@@ -45,5 +45,11 @@ namespace MyPersonalPlannerBackend.Repository
             return _context.Users
                 .SingleOrDefault(u => u.Id == id);
         }
+
+        public User GetUserByUsername(string username)
+        {
+            return _context.Users
+                .SingleOrDefault(u => u.Username == username);
+        }
     }
 }

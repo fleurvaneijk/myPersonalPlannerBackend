@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
@@ -52,6 +51,29 @@ namespace MyPersonalPlannerBackend.Repository
 
 
             return userIds;
+        }
+
+        public void AddPlanner(Planner planner)
+        {
+            _context.Planners.Add(planner);
+            _context.SaveChanges();
+            AddUserToPlanner(planner.Id, planner.Owner);
+        }
+
+        public void AddUserToPlanner(int plannerId, int userId)
+        {
+            _context.PlannerUsers.Add(new PlannerUser()
+            {
+                PlannerId = plannerId,
+                UserId = userId
+            });
+            _context.SaveChanges();
+        }
+
+        public void AddPlannerItem(PlannerItem plannerItem)
+        {
+            _context.PlannerItems.Add(plannerItem);
+            _context.SaveChanges();
         }
     }
 }

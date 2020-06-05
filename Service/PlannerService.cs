@@ -3,6 +3,7 @@ using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using MyPersonalPlannerBackend.Helpers;
 
 namespace MyPersonalPlannerBackend.Service
@@ -31,7 +32,7 @@ namespace MyPersonalPlannerBackend.Service
                 var items = GetPlannerItems(id);
                 var users = GetUsersInPlanner(id);
 
-                var plannerView = assemblePlannerView(planner, items, users);
+                var plannerView = AssemblePlannerView(planner, items, users);
 
                 planners.Add(plannerView);
             }
@@ -39,7 +40,46 @@ namespace MyPersonalPlannerBackend.Service
             return planners;
         }
 
-        private PlannerView assemblePlannerView(Planner planner, IEnumerable<PlannerItem> items, IEnumerable<User> users)
+        public void CreatePlanner(int userId, string title)
+        {
+            var planner = new Planner()
+            {
+                Id = 0,
+                Title = title,
+                Owner = userId
+            };
+            _plannerRepository.AddPlanner(planner);
+        }
+
+        public void AddUserToPlanner(int loggedInUserId, AddUserToPlanner model)
+        {
+            //TODO: check if user is already in the planner (cuz he can't get added twice)
+
+            var planner = _plannerRepository.GetPlanner(model.PlannerId);
+            if (planner.Owner != loggedInUserId)
+            {
+                throw new AuthenticationException("You're not validated to add a user to this planner.");
+            }
+
+            var user = _userService.GetUser(model.Username);
+
+            _plannerRepository.AddUserToPlanner(model.PlannerId, user.Id);
+        }
+
+        public void AddPlannerItem(int loggedInUserId, PlannerItem item)
+        {
+            var userIds = _plannerRepository.GetUserIdsInPlanner(item.PlannerId);
+            if (!userIds.Contains(loggedInUserId))
+            {
+                throw new AuthenticationException("You're not validated to add an item to this planner.");
+            }
+
+            item.IsDone = false;
+
+            _plannerRepository.AddPlannerItem(item);
+        }
+
+        private PlannerView AssemblePlannerView(Planner planner, IEnumerable<PlannerItem> items, IEnumerable<User> users)
         {
             var plannerItems = items.ToList();
             

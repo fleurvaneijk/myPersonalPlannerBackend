@@ -14,7 +14,8 @@ namespace MyPersonalPlannerBackend.Service.IService
 
         void DeleteUser(User user);
 
-        public User GetUser(int id);
+        User GetUser(int id);
+        User GetUser(string username);
 
         User GetLoggedInUser(HttpContext context);
         

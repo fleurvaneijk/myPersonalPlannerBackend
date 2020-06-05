@@ -1,5 +1,4 @@
-﻿using DevOne.Security.Cryptography.BCrypt;
-using MyPersonalPlannerBackend.Model;
+﻿using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
 using System;
@@ -49,7 +48,24 @@ namespace MyPersonalPlannerBackend.Service
 
         public User GetUser(int id)
         {
-            return  _userRepository.GetUserById(id);
+            var user = _userRepository.GetUserById(id);
+            if (user == null)
+            {
+                throw new Exception("A user with this ID doesn't exist.");
+            }
+
+            return user;
+        }
+
+        public User GetUser(string username)
+        {
+            var user = _userRepository.GetUserByUsername(username);
+            if (user == null)
+            {
+                throw new Exception("A user with this username doesn't exist.");
+            }
+
+            return user;
         }
 
         public void ChangeAgenda(User user, string agendaLink) //TODO: Does this belong in this class? clearer title 
