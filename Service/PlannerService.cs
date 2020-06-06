@@ -1,4 +1,5 @@
-﻿using MyPersonalPlannerBackend.Model;
+﻿using System;
+using MyPersonalPlannerBackend.Model;
 using MyPersonalPlannerBackend.Repository.IRepository;
 using MyPersonalPlannerBackend.Service.IService;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace MyPersonalPlannerBackend.Service
                 var items = GetPlannerItems(id);
                 var users = GetUsersInPlanner(id);
 
-                var plannerView = AssemblePlannerView(planner, items, users);
+                var plannerView = AssemblePlannerView(planner, items, users.WithoutPasswords());
 
                 planners.Add(plannerView);
             }
@@ -53,17 +54,20 @@ namespace MyPersonalPlannerBackend.Service
 
         public void AddUserToPlanner(int loggedInUserId, AddUserToPlanner model)
         {
-            //TODO: check if user is already in the planner (cuz he can't get added twice)
-
             var planner = _plannerRepository.GetPlanner(model.PlannerId);
             if (planner.Owner != loggedInUserId)
             {
                 throw new AuthenticationException("You're not validated to add a user to this planner.");
             }
+            
+            var plannerUsers = GetUsersInPlanner(planner.Id);
+            var alreadyInPlanner = plannerUsers.FirstOrDefault(plannerUser => plannerUser.Username == model.Username) != null;
 
-            var user = _userService.GetUser(model.Username);
-
-            _plannerRepository.AddUserToPlanner(model.PlannerId, user.Id);
+            if (alreadyInPlanner)
+            {
+                throw new Exception("This user is already in this database");
+            }
+            _plannerRepository.AddUserToPlanner(model.PlannerId, planner.Id);
         }
 
         public void AddPlannerItem(int loggedInUserId, PlannerItem item)
@@ -120,7 +124,7 @@ namespace MyPersonalPlannerBackend.Service
                 users.Add(_userService.GetUser(id));
             }
 
-            return users.WithoutPasswords();
+            return users;
 
         }
        

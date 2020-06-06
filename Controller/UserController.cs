@@ -25,10 +25,7 @@ namespace MyPersonalPlannerBackend.Controller
             var user = _userService.SignUp(model);
             return Ok(user);
         }
-
-        //TODO: Remove AllowAnonymous
-
-        [AllowAnonymous]
+        
         [HttpPost("changeusername")]
         public IActionResult ChangeUsername([FromBody]ChangeUsername model)
         {
@@ -49,7 +46,7 @@ namespace MyPersonalPlannerBackend.Controller
         public IActionResult ChangeAgenda([FromBody]Agenda agenda)
         {
             var user = _userService.GetLoggedInUser(HttpContext);
-            _userService.ChangeAgenda(user, agenda.AgendaLink);
+            _userService.ChangeAgendaForUser(user, agenda.AgendaLink);
             return Ok(user.WithoutPassword());
         }
 

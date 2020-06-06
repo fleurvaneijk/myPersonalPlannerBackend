@@ -68,7 +68,7 @@ namespace MyPersonalPlannerBackend.Service
             return user;
         }
 
-        public void ChangeAgenda(User user, string agendaLink) //TODO: Does this belong in this class? clearer title 
+        public void ChangeAgendaForUser(User user, string agendaLink)
         {
             user.AgendaLink = agendaLink;
             _userRepository.UpdateUser(user);

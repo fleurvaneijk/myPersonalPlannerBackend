@@ -19,6 +19,6 @@ namespace MyPersonalPlannerBackend.Service.IService
 
         User GetLoggedInUser(HttpContext context);
         
-        void ChangeAgenda(User user, string agendaLink);
+        void ChangeAgendaForUser(User user, string agendaLink);
     }
 }
