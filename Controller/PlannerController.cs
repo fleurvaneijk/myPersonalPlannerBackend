@@ -43,12 +43,37 @@ namespace MyPersonalPlannerBackend.Controller
             _plannerService.AddUserToPlanner(loggedInUserId, model);
             return Ok();
         }
+        
+        [HttpPost("removeUserFromPlanner")]
+        public IActionResult RemovePlannerFromUser(AddUserToPlanner model)
+        {
+            var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
+            _plannerService.RemovePlannerFromUser(loggedInUserId, model);
+            return Ok();
+        }
+        
 
         [HttpPost("addPlannerItem")]
         public IActionResult AddPlannerItem([FromBody] PlannerItem item)
         {
             var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
             _plannerService.AddPlannerItem(loggedInUserId, item);
+            return Ok();
+        }
+        
+        [HttpDelete("item/{id}")]
+        public IActionResult DeletePlannerItem(int id)
+        {
+            var user = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.RemoveItemFromPlanner(user, id);
+            return Ok();
+        }
+        
+        [HttpDelete("{id}")]
+        public IActionResult DeletePlanner(int id)
+        {
+            var user = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.RemovePlanner(user, id);
             return Ok();
         }
     }

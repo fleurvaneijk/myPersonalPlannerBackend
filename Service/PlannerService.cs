@@ -69,6 +69,37 @@ namespace MyPersonalPlannerBackend.Service
             }
             _plannerRepository.AddUserToPlanner(model.PlannerId, planner.Id);
         }
+        
+        public void RemovePlannerFromUser(in int loggedInUserId, AddUserToPlanner model)
+        {
+            var planner = _plannerRepository.GetPlanner(model.PlannerId);
+            if (planner.Owner != loggedInUserId)
+            {
+                throw new AuthenticationException("Not implemented");
+            }
+            _plannerRepository.RemoveUserFromPlanner(model.PlannerId, planner.Id);
+        }
+
+        public void RemoveItemFromPlanner(User user, int itemId)
+        {
+            PlannerItem plannerItem = _plannerRepository.GetPlannerItem(itemId);
+            Planner planner = _plannerRepository.GetPlanner(plannerItem.PlannerId);
+            var plannerUsers = GetUsersInPlanner(planner.Id);
+            var isInPlanner = plannerUsers.FirstOrDefault(plannerUser => plannerUser.Username == user.Username) != null;
+            if (isInPlanner)
+            {
+                _plannerRepository.RemovePlannerItem(plannerItem);
+            }
+        }
+
+        public void RemovePlanner(User user, int id)
+        {
+            Planner planner = _plannerRepository.GetPlanner(id);
+            if (planner.Owner == user.Id)
+            {
+                _plannerRepository.RemovePlanner(planner);
+            }
+        }
 
         public void AddPlannerItem(int loggedInUserId, PlannerItem item)
         {

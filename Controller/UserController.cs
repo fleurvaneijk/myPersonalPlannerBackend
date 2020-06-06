@@ -33,8 +33,7 @@ namespace MyPersonalPlannerBackend.Controller
             return Ok(user.WithoutPassword());
         }
 
-
-        [AllowAnonymous]
+        
         [HttpPost("changepassword")]
         public IActionResult ChangePassword([FromBody]ChangePassword model)
         {
@@ -49,8 +48,7 @@ namespace MyPersonalPlannerBackend.Controller
             _userService.ChangeAgendaForUser(user, agenda.AgendaLink);
             return Ok(user.WithoutPassword());
         }
-
-        [AllowAnonymous]
+        
         [HttpDelete("deleteaccount")]
         public IActionResult DeleteAccount([FromBody]User model)
         {

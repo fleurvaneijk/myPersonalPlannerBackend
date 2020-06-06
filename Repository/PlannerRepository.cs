@@ -75,5 +75,32 @@ namespace MyPersonalPlannerBackend.Repository
             _context.PlannerItems.Add(plannerItem);
             _context.SaveChanges();
         }
+
+        public void RemoveUserFromPlanner(int userId, int plannerId)
+        {
+            _context.PlannerUsers.Remove(new PlannerUser()
+            {
+                PlannerId = plannerId,
+                UserId = userId
+            });
+            _context.SaveChanges();
+        }
+
+        public PlannerItem GetPlannerItem(int id)
+        {
+            return _context.PlannerItems.Find(id);
+        }
+
+        public void RemovePlannerItem(PlannerItem plannerItem)
+        {
+            _context.PlannerItems.Remove(plannerItem);
+            _context.SaveChanges();
+        }
+
+        public void RemovePlanner(Planner planner)
+        {
+            _context.Planners.Remove(planner);
+            _context.SaveChanges();
+        }
     }
 }
