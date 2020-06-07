@@ -76,7 +76,7 @@ namespace MyPersonalPlannerBackend.Repository
             _context.SaveChanges();
         }
 
-        public void RemoveUserFromPlanner(int userId, int plannerId)
+        public void RemoveUserFromPlanner(int plannerId, int userId)
         {
             _context.PlannerUsers.Remove(new PlannerUser()
             {
