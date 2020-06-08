@@ -102,5 +102,12 @@ namespace MyPersonalPlannerBackend.Repository
             _context.Planners.Remove(planner);
             _context.SaveChanges();
         }
+
+        public void UpdatePlannerItemIsDone(int itemId, bool isDone)
+        {
+            var item = _context.PlannerItems.Find(itemId);
+            item.IsDone = isDone;
+            _context.SaveChanges();
+        }
     }
 }

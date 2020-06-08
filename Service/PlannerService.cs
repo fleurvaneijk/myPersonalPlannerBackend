@@ -82,14 +82,12 @@ namespace MyPersonalPlannerBackend.Service
             _plannerRepository.RemoveUserFromPlanner(planner.Id, user.Id);
         }
 
-        public void RemoveItemFromPlanner(User user, int itemId)
+        public void RemoveItemFromPlanner(User loggedInUser, int itemId)
         {
-            PlannerItem plannerItem = _plannerRepository.GetPlannerItem(itemId);
-            Planner planner = _plannerRepository.GetPlanner(plannerItem.PlannerId);
-            var plannerUsers = GetUsersInPlanner(planner.Id);
-            var isInPlanner = plannerUsers.FirstOrDefault(plannerUser => plannerUser.Username == user.Username) != null;
+            var isInPlanner = CheckIfUserIsInPlannerByItemId(itemId, loggedInUser);
             if (isInPlanner)
             {
+                PlannerItem plannerItem = _plannerRepository.GetPlannerItem(itemId);
                 _plannerRepository.RemovePlannerItem(plannerItem);
             }
         }
@@ -100,6 +98,15 @@ namespace MyPersonalPlannerBackend.Service
             if (planner.Owner == user.Id)
             {
                 _plannerRepository.RemovePlanner(planner);
+            }
+        }
+
+        public void SetDonePlannerItem(User loggedInUser, int itemId, bool isDone)
+        {
+            var isInPlanner = CheckIfUserIsInPlannerByItemId(itemId, loggedInUser);
+            if (isInPlanner)
+            {
+                _plannerRepository.UpdatePlannerItemIsDone(itemId, isDone);
             }
         }
 
@@ -114,6 +121,15 @@ namespace MyPersonalPlannerBackend.Service
             item.IsDone = false;
 
             _plannerRepository.AddPlannerItem(item);
+        }
+
+        private bool CheckIfUserIsInPlannerByItemId(int itemId, User loggedInUser)
+        {
+            PlannerItem plannerItem = _plannerRepository.GetPlannerItem(itemId);
+            Planner planner = _plannerRepository.GetPlanner(plannerItem.PlannerId);
+            var plannerUsers = GetUsersInPlanner(planner.Id);
+            var isInPlanner = plannerUsers.FirstOrDefault(plannerUser => plannerUser.Username == loggedInUser.Username) != null;
+            return isInPlanner;
         }
 
         private PlannerView AssemblePlannerView(Planner planner, IEnumerable<PlannerItem> items, IEnumerable<User> users)

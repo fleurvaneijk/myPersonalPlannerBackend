@@ -78,5 +78,13 @@ namespace MyPersonalPlannerBackend.Controller
         }
 
         //TODO: CHANGE PLANNER TITLE
+
+        [HttpPut("setDoneItem")]
+        public IActionResult SetDonePlannerItem(int itemId, bool isDone)
+        {
+            var loggedInUser = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.SetDonePlannerItem(loggedInUser, itemId, isDone);
+            return Ok();
+        }
     }
 }
