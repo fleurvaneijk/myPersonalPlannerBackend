@@ -52,8 +52,9 @@ namespace MyPersonalPlannerBackend.Service
             _plannerRepository.AddPlanner(planner);
         }
 
-        public void AddUserToPlanner(int loggedInUserId, AddUserToPlanner model)
+        public void AddUserToPlanner(int loggedInUserId, UserPlanner model)
         {
+            var user = _userService.GetUser(model.Username);
             var planner = _plannerRepository.GetPlanner(model.PlannerId);
             if (planner.Owner != loggedInUserId)
             {
@@ -67,17 +68,18 @@ namespace MyPersonalPlannerBackend.Service
             {
                 throw new Exception("This user is already in this database");
             }
-            _plannerRepository.AddUserToPlanner(model.PlannerId, planner.Id);
+            _plannerRepository.AddUserToPlanner(model.PlannerId, user.Id);
         }
         
-        public void RemovePlannerFromUser(in int loggedInUserId, AddUserToPlanner model)
+        public void RemoveUserFromPlanner(int loggedInUserId, UserPlanner model)
         {
+            var user = _userService.GetUser(model.Username);
             var planner = _plannerRepository.GetPlanner(model.PlannerId);
             if (planner.Owner != loggedInUserId)
             {
-                throw new AuthenticationException("Not implemented");
+                throw new AuthenticationException("You are not allowed to remove a user.");
             }
-            _plannerRepository.RemoveUserFromPlanner(model.PlannerId, planner.Id);
+            _plannerRepository.RemoveUserFromPlanner(planner.Id, user.Id);
         }
 
         public void RemoveItemFromPlanner(User user, int itemId)
