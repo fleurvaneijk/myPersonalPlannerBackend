@@ -71,7 +71,6 @@ namespace MyPersonalPlannerBackend.Controller
         [HttpPost("removeUserFromPlanner")]
         public IActionResult RemoveUserFromPlanner(UserPlanner model)
         {
-            //TODO: when removing user check if it's not the owner.
             var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
             _plannerService.RemoveUserFromPlanner(loggedInUserId, model);
             return Ok();

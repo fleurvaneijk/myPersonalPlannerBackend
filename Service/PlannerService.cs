@@ -75,9 +75,14 @@ namespace MyPersonalPlannerBackend.Service
         {
             var user = _userService.GetUser(model.Username);
             var planner = _plannerRepository.GetPlanner(model.PlannerId);
-            if (planner.Owner != loggedInUserId)
+            if(planner.Owner != loggedInUserId)
             {
                 throw new AuthenticationException("You are not allowed to remove a user.");
+            }
+
+            if (planner.Owner == user.Id)
+            {
+                throw new Exception("The owner cannot remove themselves from the planner.");
             }
             _plannerRepository.RemoveUserFromPlanner(planner.Id, user.Id);
         }
