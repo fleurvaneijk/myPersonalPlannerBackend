@@ -12,11 +12,12 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
         void AddPlanner(Planner planner);
         void AddUserToPlanner(int plannerId, int userId);
         void AddPlannerItem(PlannerItem plannerItem);
-        void RemoveUserFromPlanner(int userId, int plannerId);
+        void RemoveUserFromPlanner(int plannerId, int userId);
         PlannerItem GetPlannerItem(int id);
 
         void RemovePlannerItem(PlannerItem plannerItem);
         void RemovePlanner(Planner planner);
         void MarkAllItemsAsNotDone();
+        void UpdatePlannerItemIsDone(int itemId, bool isDone);
     }
 }

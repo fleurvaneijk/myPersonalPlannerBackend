@@ -1,11 +1,11 @@
 ﻿namespace MyPersonalPlannerBackend.Model
 {
-    public class AddUserToPlanner
+    public class UserPlanner
     {
         public int PlannerId { get; set; }
         public string Username { get; set; }
 
-        public AddUserToPlanner()
+        public UserPlanner()
         {
 
         }

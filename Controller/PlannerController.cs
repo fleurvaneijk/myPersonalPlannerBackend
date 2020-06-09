@@ -37,21 +37,12 @@ namespace MyPersonalPlannerBackend.Controller
         }
 
         [HttpPost("addUserToPlanner")]
-        public IActionResult AddUserToPlanner(AddUserToPlanner model)
+        public IActionResult AddUserToPlanner(UserPlanner model)
         {
             var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
             _plannerService.AddUserToPlanner(loggedInUserId, model);
             return Ok();
         }
-        
-        [HttpPost("removeUserFromPlanner")]
-        public IActionResult RemovePlannerFromUser(AddUserToPlanner model)
-        {
-            var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
-            _plannerService.RemovePlannerFromUser(loggedInUserId, model);
-            return Ok();
-        }
-        
 
         [HttpPost("addPlannerItem")]
         public IActionResult AddPlannerItem([FromBody] PlannerItem item)
@@ -60,8 +51,16 @@ namespace MyPersonalPlannerBackend.Controller
             _plannerService.AddPlannerItem(loggedInUserId, item);
             return Ok();
         }
-        
-        [HttpDelete("item/{id}")]
+
+        [HttpDelete]
+        public IActionResult DeletePlanner(int id)
+        {
+            var user = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.RemovePlanner(user, id);
+            return Ok();
+        }
+
+        [HttpDelete("plannerItem")]
         public IActionResult DeletePlannerItem(int id)
         {
             var user = _userService.GetLoggedInUser(HttpContext);
@@ -69,11 +68,21 @@ namespace MyPersonalPlannerBackend.Controller
             return Ok();
         }
         
-        [HttpDelete("{id}")]
-        public IActionResult DeletePlanner(int id)
+        [HttpPost("removeUserFromPlanner")]
+        public IActionResult RemoveUserFromPlanner(UserPlanner model)
         {
-            var user = _userService.GetLoggedInUser(HttpContext);
-            _plannerService.RemovePlanner(user, id);
+            var loggedInUserId = _userService.GetLoggedInUser(HttpContext).Id;
+            _plannerService.RemoveUserFromPlanner(loggedInUserId, model);
+            return Ok();
+        }
+
+        //TODO: CHANGE PLANNER TITLE
+
+        [HttpPut("setDoneItem")]
+        public IActionResult SetDonePlannerItem(int itemId, bool isDone)
+        {
+            var loggedInUser = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.SetDonePlannerItem(loggedInUser, itemId, isDone);
             return Ok();
         }
     }

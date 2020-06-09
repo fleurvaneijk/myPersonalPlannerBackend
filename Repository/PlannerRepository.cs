@@ -76,7 +76,7 @@ namespace MyPersonalPlannerBackend.Repository
             _context.SaveChanges();
         }
 
-        public void RemoveUserFromPlanner(int userId, int plannerId)
+        public void RemoveUserFromPlanner(int plannerId, int userId)
         {
             _context.PlannerUsers.Remove(new PlannerUser()
             {
@@ -110,6 +110,13 @@ namespace MyPersonalPlannerBackend.Repository
                 plannerItem.IsDone = false;
             }
 
+            _context.SaveChanges();
+        }
+
+        public void UpdatePlannerItemIsDone(int itemId, bool isDone)
+        {
+            var item = _context.PlannerItems.Find(itemId);
+            item.IsDone = isDone;
             _context.SaveChanges();
         }
     }
