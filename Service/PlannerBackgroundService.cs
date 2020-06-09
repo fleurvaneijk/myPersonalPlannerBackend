@@ -10,9 +10,9 @@ namespace MyPersonalPlannerBackend.Service
 {
     public class PlannerBackgroundService : BackgroundService
     {
-        private CrontabSchedule _schedule;
+        private readonly CrontabSchedule _schedule;
         private DateTime _nextRun;
-        private IServiceScopeFactory _scopeFactory;
+        private readonly IServiceScopeFactory _scopeFactory;
 
         private  string Schedule = "0 0 0 * * 1";
 
@@ -28,7 +28,7 @@ namespace MyPersonalPlannerBackend.Service
             do
             {
                 var now = DateTime.Now;
-                var nextrun = _schedule.GetNextOccurrence(now);
+                _schedule.GetNextOccurrence(now);
                 if (now > _nextRun)
                 {
                     Process();
@@ -41,11 +41,9 @@ namespace MyPersonalPlannerBackend.Service
         
         private void Process()
         {
-            using (var scope = _scopeFactory.CreateScope())
-            {
-                var plannerService = scope.ServiceProvider.GetService<IPlannerService>();
-                plannerService.MarkAllItemsAsNotDone();
-            }
+            using var scope = _scopeFactory.CreateScope();
+            var plannerService = scope.ServiceProvider.GetService<IPlannerService>();
+            plannerService.MarkAllItemsAsNotDone();
         }
     }
 }
