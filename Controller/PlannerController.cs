@@ -75,8 +75,14 @@ namespace MyPersonalPlannerBackend.Controller
             _plannerService.RemoveUserFromPlanner(loggedInUserId, model);
             return Ok();
         }
-
-        //TODO: CHANGE PLANNER TITLE
+        
+        [HttpPut("SetPlannerTitle")]
+        public IActionResult SetPlannerTitle(int plannerId, string title)
+        {
+            var loggedInUser = _userService.GetLoggedInUser(HttpContext);
+            _plannerService.SetPlannerTitle(loggedInUser, plannerId, title);
+            return Ok();
+        }
 
         [HttpPut("setDoneItem")]
         public IActionResult SetDonePlannerItem(int itemId, bool isDone)

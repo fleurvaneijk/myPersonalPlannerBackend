@@ -115,6 +115,15 @@ namespace MyPersonalPlannerBackend.Service
             }
         }
 
+        public void SetPlannerTitle(User loggedInUser, int plannerId, string title)
+        {
+            Planner planner = _plannerRepository.GetPlanner(plannerId);
+            if (planner.Owner == loggedInUser.Id)
+            {
+                _plannerRepository.SetPlannerTitle(planner, title);
+            }
+        }
+
         public void AddPlannerItem(int loggedInUserId, PlannerItem item)
         {
             var userIds = _plannerRepository.GetUserIdsInPlanner(item.PlannerId);

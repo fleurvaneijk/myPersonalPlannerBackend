@@ -119,5 +119,11 @@ namespace MyPersonalPlannerBackend.Repository
             item.IsDone = isDone;
             _context.SaveChanges();
         }
+
+        public void SetPlannerTitle(Planner planner, string title)
+        {
+            planner.Title = title;
+            _context.SaveChanges();
+        }
     }
 }

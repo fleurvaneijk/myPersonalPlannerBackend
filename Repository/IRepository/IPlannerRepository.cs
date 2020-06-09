@@ -19,5 +19,6 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
         void RemovePlanner(Planner planner);
         void MarkAllItemsAsNotDone();
         void UpdatePlannerItemIsDone(int itemId, bool isDone);
+        void SetPlannerTitle(Planner planner, string title);
     }
 }

@@ -15,5 +15,6 @@ namespace MyPersonalPlannerBackend.Service.IService
         void RemovePlanner(User user, int id);
         void MarkAllItemsAsNotDone();
         void SetDonePlannerItem(User loggedInUser, int itemId, bool isDone);
+        void SetPlannerTitle(User loggedInUser, int plannerId, string title);
     }
 }
