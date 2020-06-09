@@ -52,12 +52,16 @@ namespace MyPersonalPlannerBackend
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-
+            
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPlannerService, PlannerService>();
             services.AddScoped<IPlannerRepository, PlannerRepository>();
+            
+            
+            services.AddHostedService<PlannerBackgroundService>();
+
 
             services.AddDbContext<MariaDBContext>(options => {
                 options.UseMySql("Server=" + dbhost + "; Database=" + dbname + ";User=" + dbuser + ";Password=" + dbpassword);

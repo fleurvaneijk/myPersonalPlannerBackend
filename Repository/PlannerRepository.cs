@@ -102,5 +102,15 @@ namespace MyPersonalPlannerBackend.Repository
             _context.Planners.Remove(planner);
             _context.SaveChanges();
         }
+
+        public void MarkAllItemsAsNotDone()
+        {
+            foreach (var plannerItem in _context.PlannerItems)
+            {
+                plannerItem.IsDone = false;
+            }
+
+            _context.SaveChanges();
+        }
     }
 }

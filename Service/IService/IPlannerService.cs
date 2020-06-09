@@ -13,5 +13,6 @@ namespace MyPersonalPlannerBackend.Service.IService
         void RemovePlannerFromUser(in int loggedInUserId, AddUserToPlanner model);
         void RemoveItemFromPlanner(User user, int itemId);
         void RemovePlanner(User user, int id);
+        void MarkAllItemsAsNotDone();
     }
 }

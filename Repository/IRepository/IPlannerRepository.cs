@@ -17,5 +17,6 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
 
         void RemovePlannerItem(PlannerItem plannerItem);
         void RemovePlanner(Planner planner);
+        void MarkAllItemsAsNotDone();
     }
 }

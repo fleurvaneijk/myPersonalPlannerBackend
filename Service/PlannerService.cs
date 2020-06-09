@@ -158,6 +158,10 @@ namespace MyPersonalPlannerBackend.Service
             return users;
 
         }
-       
+
+        public void MarkAllItemsAsNotDone()
+        {
+            _plannerRepository.MarkAllItemsAsNotDone();
+        }
     }
 }
