@@ -14,7 +14,7 @@ namespace MyPersonalPlannerBackend.Service
         private DateTime _nextRun;
         private readonly IServiceScopeFactory _scopeFactory;
 
-        private  string Schedule = "0 0 0 * * 1";
+        private readonly string Schedule = "0 0 0 * * 1";
 
         public PlannerBackgroundService(IServiceScopeFactory  scopeFactory)
         {

@@ -11,7 +11,7 @@ namespace MyPersonalPlannerBackend.Service.IService
         void AddUserToPlanner(int loggedInUserId, UserPlanner model);
         void AddPlannerItem(int loggedInUserId, PlannerItem item);
         void RemoveUserFromPlanner(int loggedInUserId, UserPlanner model);
-        void RemoveItemFromPlanner(User user, int itemId);
+        void RemoveItemFromPlanner(User loggedInUser, int itemId);
         void RemovePlanner(User user, int id);
         void MarkAllItemsAsNotDone();
         void SetDonePlannerItem(User loggedInUser, int itemId, bool isDone);
