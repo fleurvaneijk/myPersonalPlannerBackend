@@ -62,7 +62,7 @@ namespace MyPersonalPlannerBackend.Test
 
             _userRepositoryMock.Verify(x =>
                     x.AddUser(It.IsAny<User>()),
-                Times.Once());
+                Times.AtLeast(1));
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace MyPersonalPlannerBackend.Test
 
             _userRepositoryMock.Verify(x =>
                 x.UpdateUser(It.IsAny<User>()),
-                Times.Once);
+                Times.AtLeast(1));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace MyPersonalPlannerBackend.Test
 
             _userRepositoryMock.Verify(x =>
                 x.UpdateUser(It.IsAny<User>()),
-                Times.Once);
+                Times.AtLeast(1));
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace MyPersonalPlannerBackend.Test
 
             _userRepositoryMock.Verify(x =>
                     x.UpdateUser(It.IsAny<User>()),
-                Times.Once);
+                Times.AtLeast(1));
         }
 
         [Test]
