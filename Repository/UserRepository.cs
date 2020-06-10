@@ -13,12 +13,6 @@ namespace MyPersonalPlannerBackend.Repository
             _context = context;
         }
 
-        public User GetUser(string username)
-        {
-            return _context.Users
-                .SingleOrDefault(u => u.Username == username);
-        }
-
         public User AddUser(User user)
         {
             _context.Users.Add(user);
