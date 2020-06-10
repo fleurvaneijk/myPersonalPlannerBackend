@@ -4,8 +4,6 @@ namespace MyPersonalPlannerBackend.Repository.IRepository
 {
     public interface IUserRepository
     {
-        User GetUser(string username);
-
         User AddUser(User user);
 
         User UpdateUser(User user);

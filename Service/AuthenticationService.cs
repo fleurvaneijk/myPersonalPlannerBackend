@@ -18,12 +18,12 @@ namespace MyPersonalPlannerBackend.Service
         
         public async Task<User> Authenticate(string username, string password)
         {
-            var user = await Task.Run(( ) => _userRepository.GetUser(username));
-            if (user != null && BCryptHelper.CheckPassword(password, user.Password))
+            var user = await Task.Run(( ) => _userRepository.GetUserByUsername(username));
+            if (user != null && user.Username == username && BCryptHelper.CheckPassword(password, user.Password))
             {
                 return user;
             }
-            throw new UnauthorizedAccessException();
+            throw new UnauthorizedAccessException("");
         }
     }
 }
